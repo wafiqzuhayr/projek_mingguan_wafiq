@@ -9,10 +9,14 @@ class Berita extends Model
 {
     private static $data_berita = [
         [
-            "judul" => "Festival Budaya Nusantara 2025 Resmi Dibuka di Yogyakarta",
-            "slug" => "festival-budaya-nusantara-2025-resmi-dibuka-di-yogyakarta",
-            "penulis" => "Syaif",
-            "konten" => "Festival Budaya Nusantara 2025 resmi dibuka pada hari Rabu, 1 Oktober 2025, di Alun-Alun Utara Yogyakarta. Acara ini menghadirkan lebih dari 200 peserta dari berbagai daerah di Indonesia dengan menampilkan seni tari, musik tradisional, hingga kuliner khas. Ribuan pengunjung memadati area festival sejak pagi hari. Pemerintah daerah berharap acara tahunan ini dapat memperkuat persatuan bangsa sekaligus mempromosikan potensi budaya Indonesia ke mancanegara.",
+            "judul" => "Perkembangan Kecerdasan Buatan Semakin Pesat di Indonesia",
+            "slug" => "Perkembangan Kecerdasan Buatan Semakin Pesat di Indonesia",
+            "penulis" => "Teknologi",
+            "konten" => "Perkembangan teknologi kecerdasan buatan (AI) di Indonesia menunjukkan kemajuan pesat dalam beberapa tahun terakhir. Berbagai sektor, mulai dari pendidikan, kesehatan, hingga industri kreatif, kini mulai memanfaatkan teknologi ini untuk meningkatkan efisiensi dan produktivitas.
+
+Salah satu contoh penerapan AI dapat dilihat pada layanan pelanggan berbasis chatbot yang mampu merespons pertanyaan pengguna secara otomatis dan cepat. Selain itu, startup lokal juga mulai mengembangkan sistem analisis data menggunakan AI untuk membantu perusahaan mengambil keputusan yang lebih tepat.
+
+Pemerintah Indonesia pun berkomitmen untuk mendukung pengembangan teknologi ini melalui berbagai program pelatihan digital dan kerja sama dengan universitas serta perusahaan teknologi besar. Diharapkan, pemanfaatan AI dapat menjadi motor penggerak ekonomi digital nasional di masa depan.",
         ],
         [
             "judul" => "Peluncuran Satelit Merah Putih 3 Sukses Dilakukan",

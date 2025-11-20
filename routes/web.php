@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\MahasiswaController;
 use App\Models\Berita;
 use Illuminate\Support\Facades\Route;
 
@@ -23,30 +25,25 @@ Route::get('/', function () {
 Route::get('/profile', function () {
     return view('profile', [
         "title" => "profile",
-        "nama" => "AHOG", 
-        "nohp" => "08684637390",
-        "foto" => "img/Ahok.jpg",
+        "nama" => "Ganjar Pranowo", 
+        "nohp" => "08123456789",
+        "foto" => "img/ganjar.webp",
     ]);
 });
 
-Route::get('/berita', function () {
+Route::get('/berita', [BeritaController::class, 'index']);
 
-    return view('berita',[
-        "title" => "Berita",
-        "beritas" => Berita::ambildata(),
-    ]);
-});
+Route::get('/berita/{slug}', [BeritaController::class, 'tampildata']);
 
-Route::get('/berita/{slug}', function ($slugp) {
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
 
+Route::get('/tambahmahasiswa', [MahasiswaController::class, 'tambahmahasiswa'])->name('tambahmahasiswa');
 
+Route::post('/insertdata', [MahasiswaController::class, 'insertdata'])->name('insertdata');
 
-    return view('singleberita', [
-        "title" => "Berita",
-        "new_berita" => Berita::caridata($slugp),
-        
-    ]);
-});
+Route::get('/tampildata/{id}', [MahasiswaController::class, 'tampildata'])->name('tampildata');
+
+Route::post('/editdata/{id}', [MahasiswaController::class, 'editdata'])->name('editdata');
 
 Route::get('/kontak', function () {
     return view('kontak', [

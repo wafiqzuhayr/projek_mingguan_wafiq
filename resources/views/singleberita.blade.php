@@ -1,4 +1,4 @@
-@extends ('layoutt.main')
+@extends('layoutt.main')
 
 @section('content')
 <article>

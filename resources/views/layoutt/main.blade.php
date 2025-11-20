@@ -14,7 +14,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Hallo Syaif</a>
+      <a class="navbar-brand" href="/">Hallo Wafiq</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,6 +34,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{ $title == 'about' ? 'active' : ''}}" href="/about">About</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link {{ $title == 'mahasiswa' ? 'active' : ''}}" href="/mahasiswa">Data Mahasiswa</a>
           </li>
         </ul>
       </div>
