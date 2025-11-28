@@ -45,12 +45,12 @@ Route::get('/tampildata/{id}', [MahasiswaController::class, 'tampildata'])->name
 
 Route::post('/editdata/{id}', [MahasiswaController::class, 'editdata'])->name('editdata');
 
-Route::post('/delete/{id}', [MahasiswaController::class, 'delete'])->name('delete');
+Route::get('/deletedata/{id}', [MahasiswaController::class, 'deletedata'])->name('deletedata');
 
 Route::get('/kontak', function () {
     return view('kontak', [
         "title" => "kontak",
-        "gmail" => "koclokarif5@gmail.com",
+        "gmail" => "wafiq.zuhayr123@gmail.com",
         
     ]);
 });
