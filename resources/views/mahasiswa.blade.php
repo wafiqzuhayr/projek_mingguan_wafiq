@@ -8,10 +8,22 @@
 </a>
 </br>
 @if ($message = Session::get('success'))
-<div class="alert alert-success" role="alert">
-  {{ $message }}
-</div>
+
+
+<script>
+  document.addEventListener('DOMcontentloaded', function () {
+     Swal.fire({
+      title: "Berhasil!",
+      text: "{{ $message }}",
+      icon: 'success',
+       confirmButtonText: 'OK'
+
+    });
+
+  })
+  </script>
 @endif
+
   <table class="table">
   <thead>
     <tr>
@@ -47,6 +59,52 @@
   </tbody>
 </table>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+
+  
+
+  $( '.delete').click(function( ){
+
+    let id = $(this).attr('data-id');
+    let nama = $(this).attr('data-name');
+  const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger"
+  },
+  buttonsStyling: false
+});
+swalWithBootstrapButtons.fire({
+  title: "Are you sure want to delete" + name + "?",
+  showCancelButton: true,
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "No, cancel!",
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location="/delete/"+id;
+    swalWithBootstrapButtons.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "success"
+    });
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire({
+      title: "Cancelled",
+      text: "Your imaginary file is safe :)",
+      icon: "error"
+    });
+  }
+});
+  });
+</script>
 
 
 @endsection
