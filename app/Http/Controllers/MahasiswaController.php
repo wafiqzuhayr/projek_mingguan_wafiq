@@ -29,11 +29,19 @@ class MahasiswaController extends Controller
 
     public function insertdata(Request $request)
     {
+        // Validation rules
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'nim' => 'required|numeric|unique:mahasiswas,nim',
+            'prodi' => 'required',
+            'email' => 'required|email:dns|unique:mahasiswas,email',
+            'nohp' => 'required|numeric',
+        ]);
+
         /// insert data to database
-       Mahasiswa::create($request ->all());
+        Mahasiswa::create($validatedData);
 
-       return redirect()->route('mahasiswa')->with('success', 'Data Berhasil Ditambahkan!');
-
+        return redirect()->route('mahasiswa')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
      public function tampildata($id)
