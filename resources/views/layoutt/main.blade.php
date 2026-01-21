@@ -19,7 +19,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-center">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link {{ $title == 'home' ? 'active' : ''}}" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -35,9 +35,27 @@
           <li class="nav-item">
             <a class="nav-link {{ $title == 'about' ? 'active' : ''}}" href="/about">About</a>
           </li>
+
+          @auth
             <li class="nav-item">
-            <a class="nav-link {{ $title == 'mahasiswa' ? 'active' : ''}}" href="/mahasiswa">Data Mahasiswa</a>
-          </li>
+              <a class="nav-link {{ $title == 'mahasiswa' ? 'active' : ''}}" href="/mahasiswa">Data Mahasiswa</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                Hi, {{ auth()->user()->name }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <form action="/logout" method="post">
+                  @csrf
+                  <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                </form>
+              </div>
+            </li>
+          @else
+            <li class="nav-item">
+              <a href="/login" class="nav-link {{ ($title ?? '') === 'Login' ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+            </li>
+          @endauth
         </ul>
       </div>
     </nav>

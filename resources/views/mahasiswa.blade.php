@@ -3,28 +3,23 @@
 @section('content')
   <h1 class="text-center">Data Mahasiswa</h1>
   <div class="row mt-4">
-  <a href ="/tambahmahasiswa">
-       <button type="button" class="btn btn-success mb-2">Tambah Data +</button>
-</a>
-</br>
-@if ($message = Session::get('success'))
+    <a href="/tambahmahasiswa" class="btn btn-success mb-2">Tambah Data +</a>
+  </div>
 
-
-<script>
-  document.addEventListener('DOMcontentloaded', function () {
-     Swal.fire({
-      title: "Berhasil!",
-      text: "{{ $message }}",
-      icon: 'success',
-       confirmButtonText: 'OK'
-
-    });
-
-  })
+  @if ($message = Session::get('success'))
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+       Swal.fire({
+        title: "Berhasil!",
+        text: "{{ $message }}",
+        icon: 'success',
+         confirmButtonText: 'OK'
+      });
+    })
   </script>
-@endif
+  @endif
 
-  <table class="table">
+  <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -49,8 +44,8 @@
       <td>{{ $mahasiswa["nphp"] }}</td>
       <td>
         <a href="tampildata/{{ $mahasiswa['id']}}" class="btn btn-primary">Edit</a>
-        <a href="deletedata/{{ $mahasiswa['id']}}" class="btn btn-danger" onclick="return confirm('Yakin Hapus?')">Hapus</a>
-       
+        <!-- Changed href to javascript:void(0) to prevent navigation, added class 'delete', and data attributes -->
+        <a href="javascript:void(0);" class="btn btn-danger delete" data-id="{{ $mahasiswa['id']}}" data-name="{{ $mahasiswa['name']}}">Hapus</a>
       </td> 
       <?php $i++ ?>
     </tr>
@@ -64,45 +59,44 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
-
-  
-
-  $( '.delete').click(function( ){
-
+  $('.delete').click(function(){
     let id = $(this).attr('data-id');
-    let nama = $(this).attr('data-name');
-  const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: "btn btn-success",
-    cancelButton: "btn btn-danger"
-  },
-  buttonsStyling: false
-});
-swalWithBootstrapButtons.fire({
-  title: "Are you sure want to delete" + name + "?",
-  showCancelButton: true,
-  confirmButtonText: "Yes, delete it!",
-  cancelButtonText: "No, cancel!",
-  reverseButtons: true
-}).then((result) => {
-  if (result.isConfirmed) {
-    window.location="/delete/"+id;
-    swalWithBootstrapButtons.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
-      icon: "success"
+    let nama = $(this).attr('data-name'); // Fixed variable name mapping to match usage
+    
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
     });
-  } else if (
-    /* Read more about handling dismissals below */
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
+
     swalWithBootstrapButtons.fire({
-      title: "Cancelled",
-      text: "Your imaginary file is safe :)",
-      icon: "error"
+      title: "Are you sure want to delete " + nama + "?", // Fixed variable usage from 'name' to 'nama'
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location="/deletedata/"+id; // Fixed route from /delete/ to /deletedata/
+        
+        // This part might not be seen if the page redirects quickly, but keeping for structure
+        swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your imaginary file is safe :)",
+          icon: "error"
+        });
+      }
     });
-  }
-});
   });
 </script>
 
